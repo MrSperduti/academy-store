@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout Debug</title>
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <title>Checkout - ACADEMY STORE</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    (function(){
+    window.onload = function () {
       emailjs.init("6UvRqFZl_DySz_084");
-    })();
+    };
   </script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Checkout (Debug)</h1>
+    <h1>Checkout</h1>
     <nav><a href="prodotti.html">🔙 Torna al catalogo</a></nav>
   </header>
   <main>
@@ -25,7 +25,7 @@
       <label>Data di nascita:<br><input type="date" id="datanascita" required></label><br><br>
       <label>Email:<br><input type="email" id="email" required></label><br><br>
       <label>Note:<br><textarea id="note" rows="4"></textarea></label><br><br>
-      <button type="submit">📩 Invia ordine (DEBUG)</button>
+      <button type="submit">📩 Invia ordine</button>
     </form>
     <pre id="debug-output" style="margin-top:20px; background:#eee; padding:10px;"></pre>
   </main>
@@ -45,26 +45,19 @@
     }
 
     function inviaOrdine() {
-      const nome = document.getElementById("nome").value;
-      const cognome = document.getElementById("cognome").value;
-      const datanascita = document.getElementById("datanascita").value;
-      const email = document.getElementById("email").value;
-      const note = document.getElementById("note").value;
-      const carrelloText = generaRiepilogoCarrello();
-
       const templateParams = {
-        nome: nome,
-        cognome: cognome,
-        datanascita: datanascita,
-        email: email,
-        note: note,
-        carrello: carrelloText
+        nome: document.getElementById("nome").value,
+        cognome: document.getElementById("cognome").value,
+        datanascita: document.getElementById("datanascita").value,
+        email: document.getElementById("email").value,
+        note: document.getElementById("note").value,
+        carrello: generaRiepilogoCarrello()
       };
 
       emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
         .then(response => {
           document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo!\n" + JSON.stringify(response, null, 2);
-          localStorage.removeItem("carrello");
+          localStorage.removeItem("carrello"); alert("✅ Ordine inviato con successo! Grazie per aver ordinato con ACADEMY STORE.");
         }, error => {
           document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
         });
