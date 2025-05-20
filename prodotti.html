@@ -4,121 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prodotti - ACADEMY STORE</title>
+  <title>Prodotti</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo Academy" class="logo">
     <h1>ACADEMY STORE</h1>
     <nav>
-      <a href="index.html" class="nav-btn">🏠 Home</a>
-      <a href="carrello.html" class="nav-btn">🛒 Carrello</a>
+      <a href="index.html">🏠 Home</a>
+      <a href="carrello.html">🛒 Carrello</a>
     </nav>
   </header>
   <main>
     <h2>Catalogo Prodotti</h2>
     <div class="grid">
-
       <div class="card">
-        <img src="tshirt_supporter.jpg" alt="T-shirt SUPPORTER blu">
-        <h3>T-shirt SUPPORTER blu</h3>
+        <img src="tshirt_supporter.jpg" alt="T-shirt SUPPORTER">
+        <h3>T-shirt SUPPORTER</h3>
         <p>13,00 €</p>
-        <button>Aggiungi al carrello</button>
+        <button onclick="aggiungiAlCarrello('T-shirt SUPPORTER', 13)">Aggiungi al carrello</button>
       </div>
-    
       <div class="card">
-        <img src="felpa_supporter.jpg" alt="Felpa leggera SUPPORTER">
-        <h3>Felpa leggera SUPPORTER</h3>
+        <img src="felpa_supporter.jpg" alt="Felpa SUPPORTER">
+        <h3>Felpa SUPPORTER</h3>
         <p>22,00 €</p>
-        <button>Aggiungi al carrello</button>
+        <button onclick="aggiungiAlCarrello('Felpa SUPPORTER', 22)">Aggiungi al carrello</button>
       </div>
-    
-      <div class="card">
-        <img src="tshirt_sempre.jpg" alt="T-shirt SEMPRE CON VOI">
-        <h3>T-shirt SEMPRE CON VOI</h3>
-        <p>15,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="soccer_mom.jpg" alt="T-shirt Soccer MOM">
-        <h3>T-shirt Soccer MOM</h3>
-        <p>14,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="soccer_dad.jpg" alt="T-shirt Soccer DAD">
-        <h3>T-shirt Soccer DAD</h3>
-        <p>14,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="baby_fan.jpg" alt="T-shirt FAN Baby">
-        <h3>T-shirt FAN Baby</h3>
-        <p>14,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="body_fan.jpg" alt="Body FAN Baby">
-        <h3>Body FAN Baby</h3>
-        <p>15,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="pantaloncino_uomo.jpg" alt="Pantaloncino uomo">
-        <h3>Pantaloncino uomo</h3>
-        <p>20,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="pantaloncino_donna.jpg" alt="Pantaloncino donna">
-        <h3>Pantaloncino donna</h3>
-        <p>20,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="pochette_zip.jpg" alt="Pochette zip">
-        <h3>Pochette zip</h3>
-        <p>13,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="pochette_16x22.jpg" alt="Pochette 16x22cm">
-        <h3>Pochette 16x22cm</h3>
-        <p>10,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="cappello_glam.jpg" alt="Cappello glam">
-        <h3>Cappello glam</h3>
-        <p>12,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="borraccia_plastica.jpg" alt="Borraccia 1L plastica">
-        <h3>Borraccia 1L plastica</h3>
-        <p>11,00 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
-      <div class="card">
-        <img src="borraccia_termica.jpg" alt="Borraccia termica acciaio">
-        <h3>Borraccia termica acciaio</h3>
-        <p>13,50 €</p>
-        <button>Aggiungi al carrello</button>
-      </div>
-    
     </div>
   </main>
+  <script>
+    function aggiungiAlCarrello(nome, prezzo) {
+      let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+      let esistente = carrello.find(p => p.nome === nome);
+      if (esistente) {
+        esistente.quantità += 1;
+      } else {
+        carrello.push({ nome, prezzo, quantità: 1 });
+      }
+      localStorage.setItem("carrello", JSON.stringify(carrello));
+      alert(nome + " aggiunto al carrello!");
+    }
+  </script>
 </body>
 </html>

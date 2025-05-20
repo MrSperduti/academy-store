@@ -1,1 +1,52 @@
-<!DOCTYPE html><html><head><title>Carrello</title></head><body><h2>Carrello</h2><p>Nessun prodotto</p></body></html>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrello</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Carrello</h1>
+    <nav>
+      <a href="prodotti.html">🛍️ Torna al catalogo</a>
+    </nav>
+  </header>
+  <main>
+    <div id="carrello"></div>
+    <h3 id="totale"></h3>
+    <a href="checkout.html"><button>Procedi al checkout</button></a>
+  </main>
+  <script>
+    const contenitore = document.getElementById("carrello");
+    const totaleElem = document.getElementById("totale");
+    let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+
+    function mostraCarrello() {
+      contenitore.innerHTML = "";
+      let totale = 0;
+      carrello.forEach((p, i) => {
+        totale += p.prezzo * p.quantità;
+        contenitore.innerHTML += `
+          <div class="item">
+            <strong>${p.nome}</strong><br>
+            Prezzo: €${p.prezzo} x ${p.quantità}
+            <button onclick="rimuovi(${i})">❌</button>
+          </div>
+        `;
+      });
+      totaleElem.textContent = "Totale: €" + totale.toFixed(2);
+    }
+
+    function rimuovi(index) {
+      carrello.splice(index, 1);
+      localStorage.setItem("carrello", JSON.stringify(carrello));
+      mostraCarrello();
+    }
+
+    mostraCarrello();
+  </script>
+</body>
+</html>
