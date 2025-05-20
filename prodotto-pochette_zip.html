@@ -16,6 +16,7 @@
   </header>
   <main>
     <img src="pochette_zip.jpg" alt="Pochette zip" style="max-width:300px;display:block;margin:auto;">
+    <p style="text-align:center;"><strong>Prezzo: €13.00</strong></p>
     <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
       
       
@@ -37,7 +38,7 @@
   <script>
     function aggiungiAlCarrello() {
       const nome = "Pochette zip";
-      const prezzo = 0;  // Da personalizzare
+      const prezzo = 13.0;
       const taglia = document.getElementById("taglia")?.value || "";
       const colore = document.getElementById("colore")?.value || "";
       const quantita = parseInt(document.getElementById("quantita").value);

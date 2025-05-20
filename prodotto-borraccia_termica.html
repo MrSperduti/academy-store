@@ -16,6 +16,7 @@
   </header>
   <main>
     <img src="borraccia_termica.jpg" alt="Borraccia termica" style="max-width:300px;display:block;margin:auto;">
+    <p style="text-align:center;"><strong>Prezzo: €13.50</strong></p>
     <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
       
       
@@ -30,7 +31,7 @@
   <script>
     function aggiungiAlCarrello() {
       const nome = "Borraccia termica";
-      const prezzo = 0;  // Da personalizzare
+      const prezzo = 13.5;
       const taglia = document.getElementById("taglia")?.value || "";
       const colore = document.getElementById("colore")?.value || "";
       const quantita = parseInt(document.getElementById("quantita").value);

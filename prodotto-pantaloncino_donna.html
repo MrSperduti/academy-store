@@ -16,6 +16,7 @@
   </header>
   <main>
     <img src="pantaloncino_donna.jpg" alt="Pantaloncino donna" style="max-width:300px;display:block;margin:auto;">
+    <p style="text-align:center;"><strong>Prezzo: €20.00</strong></p>
     <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
       
         <label>Taglia:
@@ -44,7 +45,7 @@
   <script>
     function aggiungiAlCarrello() {
       const nome = "Pantaloncino donna";
-      const prezzo = 0;  // Da personalizzare
+      const prezzo = 20.0;
       const taglia = document.getElementById("taglia")?.value || "";
       const colore = document.getElementById("colore")?.value || "";
       const quantita = parseInt(document.getElementById("quantita").value);
