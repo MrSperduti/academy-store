@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prodotti</title>
+  <title>Prodotti - ACADEMY STORE</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,32 +18,106 @@
   <main>
     <h2>Catalogo Prodotti</h2>
     <div class="grid">
+
       <div class="card">
-        <img src="tshirt_supporter.jpg" alt="T-shirt SUPPORTER">
+        <a href="prodotto-tshirt_supporter.html">
+          <img src="tshirt_supporter.jpg" alt="T-shirt SUPPORTER">
+        </a>
         <h3>T-shirt SUPPORTER</h3>
-        <p>13,00 €</p>
-        <button onclick="aggiungiAlCarrello('T-shirt SUPPORTER', 13)">Aggiungi al carrello</button>
       </div>
+    
       <div class="card">
-        <img src="felpa_supporter.jpg" alt="Felpa SUPPORTER">
+        <a href="#">
+          <img src="felpa_supporter.jpg" alt="Felpa SUPPORTER">
+        </a>
         <h3>Felpa SUPPORTER</h3>
-        <p>22,00 €</p>
-        <button onclick="aggiungiAlCarrello('Felpa SUPPORTER', 22)">Aggiungi al carrello</button>
       </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="tshirt_sempre.jpg" alt="T-shirt SEMPRE CON VOI">
+        </a>
+        <h3>T-shirt SEMPRE CON VOI</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="soccer_mom.jpg" alt="T-shirt Soccer MOM">
+        </a>
+        <h3>T-shirt Soccer MOM</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="soccer_dad.jpg" alt="T-shirt Soccer DAD">
+        </a>
+        <h3>T-shirt Soccer DAD</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="baby_fan.jpg" alt="T-shirt FAN Baby">
+        </a>
+        <h3>T-shirt FAN Baby</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="body_fan.jpg" alt="Body FAN Baby">
+        </a>
+        <h3>Body FAN Baby</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="pantaloncino_uomo.jpg" alt="Pantaloncino uomo">
+        </a>
+        <h3>Pantaloncino uomo</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="pantaloncino_donna.jpg" alt="Pantaloncino donna">
+        </a>
+        <h3>Pantaloncino donna</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="pochette_zip.jpg" alt="Pochette zip">
+        </a>
+        <h3>Pochette zip</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="pochette_16x22.jpg" alt="Pochette 16x22cm">
+        </a>
+        <h3>Pochette 16x22cm</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="cappello_glam.jpg" alt="Cappello glam">
+        </a>
+        <h3>Cappello glam</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="borraccia_plastica.jpg" alt="Borraccia 1L">
+        </a>
+        <h3>Borraccia 1L</h3>
+      </div>
+    
+      <div class="card">
+        <a href="#">
+          <img src="borraccia_termica.jpg" alt="Borraccia termica">
+        </a>
+        <h3>Borraccia termica</h3>
+      </div>
+    
     </div>
   </main>
-  <script>
-    function aggiungiAlCarrello(nome, prezzo) {
-      let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
-      let esistente = carrello.find(p => p.nome === nome);
-      if (esistente) {
-        esistente.quantità += 1;
-      } else {
-        carrello.push({ nome, prezzo, quantità: 1 });
-      }
-      localStorage.setItem("carrello", JSON.stringify(carrello));
-      alert(nome + " aggiunto al carrello!");
-    }
-  </script>
 </body>
 </html>
