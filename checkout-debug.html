@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout Debug</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("6UvRqFZl_DySz_084");
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Checkout (Debug)</h1>
+    <nav><a href="prodotti.html">🔙 Torna al catalogo</a></nav>
+  </header>
+  <main>
+    <form id="checkout-form" style="max-width: 400px; margin: auto;" onsubmit="inviaOrdine(); return false;">
+      <label>Nome:<br><input type="text" id="nome" required></label><br><br>
+      <label>Cognome:<br><input type="text" id="cognome" required></label><br><br>
+      <label>Data di nascita:<br><input type="date" id="datanascita" required></label><br><br>
+      <label>Email:<br><input type="email" id="email" required></label><br><br>
+      <label>Note:<br><textarea id="note" rows="4"></textarea></label><br><br>
+      <button type="submit">📩 Invia ordine (DEBUG)</button>
+    </form>
+    <pre id="debug-output" style="margin-top:20px; background:#eee; padding:10px;"></pre>
+  </main>
+  <script>
+    function generaRiepilogoCarrello() {
+      const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+      if (carrello.length === 0) return "Carrello vuoto.";
+      return carrello.map(p => {
+        return `🔹 ${p.nome}
+  ${p.taglia ? "- Taglia: " + p.taglia : ""}
+  ${p.colore ? "- Colore: " + p.colore : ""}
+  - Quantità: ${p.quantita}
+  - Prezzo: €${(p.prezzo).toFixed(2)}
+  - Subtotale: €${(p.prezzo * p.quantita).toFixed(2)}
+`;
+      }).join("\n");
+    }
+
+    function inviaOrdine() {
+      const nome = document.getElementById("nome").value;
+      const cognome = document.getElementById("cognome").value;
+      const datanascita = document.getElementById("datanascita").value;
+      const email = document.getElementById("email").value;
+      const note = document.getElementById("note").value;
+      const carrelloText = generaRiepilogoCarrello();
+
+      const templateParams = {
+        nome: nome,
+        cognome: cognome,
+        datanascita: datanascita,
+        email: email,
+        note: note,
+        carrello: carrelloText
+      };
+
+      emailjs.send("service_px4g8mw", "template_ior7q1p", templateParams)
+        .then(response => {
+          document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo!\n" + JSON.stringify(response, null, 2);
+          localStorage.removeItem("carrello");
+        }, error => {
+          document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
+        });
+    }
+  </script>
+</body>
+</html>
