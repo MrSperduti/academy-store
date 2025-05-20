@@ -4,35 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>T-shirt SUPPORTER</title>
+  <title>Borraccia 1L</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>T-shirt SUPPORTER</h1>
+    <h1>Borraccia 1L</h1>
     <nav>
       <a href="prodotti.html">🔙 Torna al catalogo</a>
     </nav>
   </header>
   <main>
-    <img src="tshirt_supporter.jpg" alt="T-shirt SUPPORTER" style="max-width:300px;display:block;margin:auto;">
+    <img src="borraccia_plastica.jpg" alt="Borraccia 1L" style="max-width:300px;display:block;margin:auto;">
     <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
       
-        <label>Taglia:
-          <select id="taglia">
-            <option>XXS</option><option>XS</option><option>S</option>
-            <option>M</option><option>L</option><option>XL</option>
-          </select>
-        </label><br><br>
-        
       
-        <label>Colore:
-          <select id="colore">
-            <option>Bianco</option><option>Nero</option><option>Rosso</option>
-            <option>Giallo</option><option>Blu</option>
-          </select>
-        </label><br><br>
-        
       <label>Quantità:
         <select id="quantita">
           <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
@@ -43,7 +29,7 @@
   </main>
   <script>
     function aggiungiAlCarrello() {
-      const nome = "T-shirt SUPPORTER";
+      const nome = "Borraccia 1L";
       const prezzo = 0;  // Da personalizzare
       const taglia = document.getElementById("taglia")?.value || "";
       const colore = document.getElementById("colore")?.value || "";
