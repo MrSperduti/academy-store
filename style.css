@@ -1,30 +1,37 @@
-
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
   margin: 0;
   padding: 0;
+  color: #002b5c;
 }
+
+/* Header attuale */
 header {
   background: #002b5c;
   color: white;
   padding: 20px;
   text-align: center;
 }
+
 nav a {
   color: white;
   text-decoration: none;
   margin: 0 10px;
 }
+
+/* Main e form attuali */
 main {
   padding: 20px;
 }
+
 form input, form textarea, form select {
   width: 100%;
   padding: 8px;
   margin-top: 4px;
   box-sizing: border-box;
 }
+
 form button {
   background: #d90429;
   color: white;
@@ -34,6 +41,8 @@ form button {
   width: 100%;
   cursor: pointer;
 }
+
+/* Card prodotti e griglia attuali */
 .card {
   background: white;
   border-radius: 8px;
@@ -42,20 +51,93 @@ form button {
   box-shadow: 0 0 5px #ccc;
   text-align: center;
 }
+
 .grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
 }
+
 .card img {
   width: 100%;
   height: auto;
 }
+
 .item {
   background: white;
   border-radius: 6px;
   box-shadow: 0 0 3px #ccc;
   margin-bottom: 15px;
   padding: 10px;
+}
+
+/* NUOVO: Stile per la home page index.html */
+
+/* Container centrale home */
+.container {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  margin: 60px auto 40px;
+}
+
+/* Logo centrato e dimensionato */
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+/* Titolo moderno */
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Descrizione home */
+.description {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 25px;
+  color: #444;
+  white-space: pre-line; /* per andare a capo su \n */
+}
+
+/* Pulsante rosso "Vai al catalogo" */
+.catalogo-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background-color: #d90429;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.catalogo-btn:hover {
+  background-color: #a00320;
+}
+
+/* Responsive per mobile */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .catalogo-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+  .container {
+    margin: 40px 15px 30px;
+    padding: 30px 20px;
+  }
 }
