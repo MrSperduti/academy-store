@@ -1,27 +1,38 @@
 
 body {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
   margin: 0;
   padding: 0;
-  background: #f4f4f4;
 }
 header {
   background: #002b5c;
   color: white;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
 }
 nav a {
   color: white;
-  margin: 0 10px;
   text-decoration: none;
+  margin: 0 10px;
 }
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+main {
   padding: 20px;
+}
+form input, form textarea, form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+form button {
+  background: #d90429;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  cursor: pointer;
 }
 .card {
   background: white;
@@ -31,7 +42,20 @@ nav a {
   box-shadow: 0 0 5px #ccc;
   text-align: center;
 }
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 .card img {
   width: 100%;
   height: auto;
+}
+.item {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 0 3px #ccc;
+  margin-bottom: 15px;
+  padding: 10px;
 }
