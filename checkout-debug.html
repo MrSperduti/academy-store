@@ -57,7 +57,7 @@
       emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
         .then(response => {
           document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo!\n" + JSON.stringify(response, null, 2);
-          localStorage.removeItem("carrello"); alert("✅ Ordine inviato con successo! Grazie per aver ordinato con ACADEMY STORE.");
+          localStorage.removeItem("carrello"); window.location.href = "ordine-completato.html";
         }, error => {
           document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
         });
