@@ -61,7 +61,7 @@
         carrello: carrelloText
       };
 
-      emailjs.send("service_px4g8mw", "template_ior7q1p", templateParams)
+      emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
         .then(response => {
           document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo!\n" + JSON.stringify(response, null, 2);
           localStorage.removeItem("carrello");

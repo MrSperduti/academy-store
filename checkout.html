@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout - ACADEMY STORE</title>
+  <title>Checkout Debug</title>
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
     (function(){
@@ -15,38 +15,33 @@
 </head>
 <body>
   <header>
-    <h1>Checkout</h1>
-    <nav>
-      <a href="prodotti.html">🔙 Torna al catalogo</a>
-    </nav>
+    <h1>Checkout (Debug)</h1>
+    <nav><a href="prodotti.html">🔙 Torna al catalogo</a></nav>
   </header>
   <main>
     <form id="checkout-form" style="max-width: 400px; margin: auto;" onsubmit="inviaOrdine(); return false;">
-      <label>Nome:<br><input type="text" name="nome" id="nome" required></label><br><br>
-      <label>Cognome:<br><input type="text" name="cognome" id="cognome" required></label><br><br>
-      <label>Data di nascita:<br><input type="date" name="datanascita" id="datanascita" required></label><br><br>
-      <label>Email:<br><input type="email" name="email" id="email" required></label><br><br>
-      <label>Note:<br><textarea name="note" id="note" rows="4"></textarea></label><br><br>
-      <button type="submit">📩 Invia ordine</button>
+      <label>Nome:<br><input type="text" id="nome" required></label><br><br>
+      <label>Cognome:<br><input type="text" id="cognome" required></label><br><br>
+      <label>Data di nascita:<br><input type="date" id="datanascita" required></label><br><br>
+      <label>Email:<br><input type="email" id="email" required></label><br><br>
+      <label>Note:<br><textarea id="note" rows="4"></textarea></label><br><br>
+      <button type="submit">📩 Invia ordine (DEBUG)</button>
     </form>
-    <p id="risultato" style="text-align:center;margin-top:20px;color:green;"></p>
+    <pre id="debug-output" style="margin-top:20px; background:#eee; padding:10px;"></pre>
   </main>
-
   <script>
     function generaRiepilogoCarrello() {
       const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
       if (carrello.length === 0) return "Carrello vuoto.";
-
-      let riepilogo = "";
-      carrello.forEach((p, i) => {
-        riepilogo += `🔹 ${p.nome}\n`;
-        if (p.taglia) riepilogo += ` - Taglia: ${p.taglia}\n`;
-        if (p.colore) riepilogo += ` - Colore: ${p.colore}\n`;
-        riepilogo += ` - Quantità: ${p.quantita}\n`;
-        riepilogo += ` - Prezzo: €${(p.prezzo).toFixed(2)}\n`;
-        riepilogo += ` - Subtotale: €${(p.prezzo * p.quantita).toFixed(2)}\n\n`;
-      });
-      return riepilogo;
+      return carrello.map(p => {
+        return `🔹 ${p.nome}
+  ${p.taglia ? "- Taglia: " + p.taglia : ""}
+  ${p.colore ? "- Colore: " + p.colore : ""}
+  - Quantità: ${p.quantita}
+  - Prezzo: €${(p.prezzo).toFixed(2)}
+  - Subtotale: €${(p.prezzo * p.quantita).toFixed(2)}
+`;
+      }).join("\n");
     }
 
     function inviaOrdine() {
@@ -66,12 +61,12 @@
         carrello: carrelloText
       };
 
-      emailjs.send("service_px4g8mw", "template_ior7q1p", templateParams)
-        .then(function(response) {
-          document.getElementById("risultato").textContent = "✅ Ordine inviato con successo!";
+      emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
+        .then(response => {
+          document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo!\n" + JSON.stringify(response, null, 2);
           localStorage.removeItem("carrello");
-        }, function(error) {
-          document.getElementById("risultato").textContent = "❌ Errore durante l'invio.";
+        }, error => {
+          document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
         });
     }
   </script>
