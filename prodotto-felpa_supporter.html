@@ -33,6 +33,21 @@
         </select>
       </label><br><br>
 
+      <label>Modifica la scritta esistente:<br>
+        <input type="text" id="modificaScritta" placeholder="Scrivi qui la modifica">
+      </label><br><br>
+
+      <label>Aggiungi una scritta personalizzata:<br>
+        <input type="text" id="aggiungiScritta" placeholder="Scrivi la scritta da aggiungere">
+      </label><br><br>
+
+      <label>Dove vuoi la personalizzazione?<br>
+        <select id="posizioneScritta">
+          <option value="fronte">Fronte</option>
+          <option value="retro">Retro</option>
+        </select>
+      </label><br><br>
+
       <label>Quantità:
         <select id="quantita">
           <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
@@ -55,10 +70,13 @@
       const prezzo = 22.0;
       const taglia = document.getElementById("taglia")?.value || "";
       const colore = document.getElementById("colore")?.value || "";
+      const modificaScritta = document.getElementById("modificaScritta")?.value || "";
+      const aggiungiScritta = document.getElementById("aggiungiScritta")?.value || "";
+      const posizioneScritta = document.getElementById("posizioneScritta")?.value || "";
       const quantita = parseInt(document.getElementById("quantita").value);
 
       let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
-      carrello.push({ nome, prezzo, taglia, colore, quantita });
+      carrello.push({ nome, prezzo, taglia, colore, modificaScritta, aggiungiScritta, posizioneScritta, quantita });
       localStorage.setItem("carrello", JSON.stringify(carrello));
       alert("Prodotto aggiunto al carrello!");
     }
