@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -56,7 +55,7 @@
 
       emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
         .then(response => {
-          document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo!\n" + JSON.stringify(response, null, 2);
+          document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo! Grazie per aver ordinato con ACADEMY STORE.\nPotrai ritirare il tuo ordine presso il nostro store in via Venezia 128, Ardea.\nRiceverai una mail quando sarà pronto.";
           localStorage.removeItem("carrello"); window.location.href = "ordine-completato.html";
         }, error => {
           document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
