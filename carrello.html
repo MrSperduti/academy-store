@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -27,15 +26,29 @@
     function mostraCarrello() {
       contenitore.innerHTML = "";
       let totale = 0;
+      let supplemento = 0;
+
       carrello.forEach((p, i) => {
         const prezzoSingolo = p.prezzo || 0;
         const subtotale = prezzoSingolo * p.quantita;
+
+        // Verifica se c'è aggiunta scritta per applicare supplemento
+        const haAggiuntaScritta = p.aggiungiScritta && p.aggiungiScritta.trim() !== "";
+
+        if (haAggiuntaScritta) {
+          supplemento += 2 * p.quantita; // 2 euro per ogni unità personalizzata
+        }
+
         totale += subtotale;
+
         contenitore.innerHTML += `
           <div class="item">
             <strong>${p.nome}</strong><br>
             ${p.taglia ? "Taglia: " + p.taglia + "<br>" : ""}
             ${p.colore ? "Colore: " + p.colore + "<br>" : ""}
+            ${p.modificaScritta ? "Modifica scritta: " + p.modificaScritta + "<br>" : ""}
+            ${p.aggiungiScritta ? "Aggiunta scritta: " + p.aggiungiScritta + "<br>" : ""}
+            ${p.posizioneScritta ? "Posizione personalizzazione: " + p.posizioneScritta + "<br>" : ""}
             Quantità: ${p.quantita}<br>
             Prezzo: €${prezzoSingolo.toFixed(2)}<br>
             Subtotale: €${subtotale.toFixed(2)}
@@ -43,7 +56,14 @@
           </div>
         `;
       });
-      totaleElem.textContent = "Totale: €" + totale.toFixed(2);
+
+      const totaleConSupplemento = totale + supplemento;
+
+      if (supplemento > 0) {
+        totaleElem.textContent = `Totale: €${totale.toFixed(2)} + Supplemento personalizzazione: €${supplemento.toFixed(2)} = €${totaleConSupplemento.toFixed(2)}`;
+      } else {
+        totaleElem.textContent = `Totale: €${totale.toFixed(2)}`;
+      }
     }
 
     function rimuovi(index) {
