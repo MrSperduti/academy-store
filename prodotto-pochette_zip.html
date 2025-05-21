@@ -23,4 +23,39 @@
           <option value="bianco">Bianco</option>
           <option value="nero">Nero</option>
           <option value="rosso">Rosso</option>
-          <option value="giallo
+          <option value="giallo">Giallo</option>
+          <option value="blu">Blu</option>
+        </select>
+      </label><br><br>
+
+      <label>Quantità:
+        <select id="quantita">
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+        </select>
+      </label><br><br>
+
+      <button type="submit">Aggiungi al carrello</button>
+    </form>
+  </main>
+  <script>
+    function aggiornaImmagine() {
+      const colore = document.getElementById("colore").value;
+      const image = document.getElementById("productImage");
+      image.src = `pochette_zip_${colore}.jpg`;
+      image.alt = `Pochette zip ${colore.charAt(0).toUpperCase() + colore.slice(1)}`;
+    }
+
+    function aggiungiAlCarrello() {
+      const nome = "Pochette zip";
+      const prezzo = 13.0;
+      const colore = document.getElementById("colore")?.value || "";
+      const quantita = parseInt(document.getElementById("quantita").value);
+
+      let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+      carrello.push({ nome, prezzo, taglia: "", colore, quantita });
+      localStorage.setItem("carrello", JSON.stringify(carrello));
+      alert("Prodotto aggiunto al carrello!");
+    }
+  </script>
+</body>
+</html>
