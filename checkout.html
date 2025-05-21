@@ -23,7 +23,10 @@
       <label>Cognome:<br><input type="text" id="cognome" required></label><br><br>
       <label>Data di nascita:<br><input type="date" id="datanascita" required></label><br><br>
       <label>Email:<br><input type="email" id="email" required></label><br><br>
-      <label>Note:<br><textarea id="note" rows="4"></textarea></label><br><br>
+      
+      <label>Descrivi come vuoi la tua personalizzazione:</label><br>
+      <textarea id="note" rows="4" placeholder="Scrivi qui le istruzioni per la personalizzazione..."></textarea><br><br>
+      
       <button type="submit">📩 Invia ordine</button>
     </form>
     <pre id="debug-output" style="margin-top:20px; background:#eee; padding:10px;"></pre>
@@ -32,15 +35,41 @@
     function generaRiepilogoCarrello() {
       const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
       if (carrello.length === 0) return "Carrello vuoto.";
-      return carrello.map(p => {
-        return `🔹 ${p.nome}
-  ${p.taglia ? "- Taglia: " + p.taglia : ""}
-  ${p.colore ? "- Colore: " + p.colore : ""}
-  - Quantità: ${p.quantita}
-  - Prezzo: €${(p.prezzo).toFixed(2)}
-  - Subtotale: €${(p.prezzo * p.quantita).toFixed(2)}
+
+      let totale = 0;
+      let supplemento = 0;
+      let riepilogo = "";
+
+      carrello.forEach(p => {
+        let prezzoProdotto = p.prezzo * p.quantita;
+        let haAggiuntaScritta = p.aggiungiScritta && p.aggiungiScritta.trim() !== "";
+
+        if (haAggiuntaScritta) {
+          supplemento += 2 * p.quantita; // 2 euro per ogni prodotto con aggiunta scritta, moltiplicato per quantità
+        }
+
+        totale += prezzoProdotto;
+
+        riepilogo += `🔹 ${p.nome}
+${p.taglia ? "- Taglia: " + p.taglia : ""}
+${p.colore ? "- Colore: " + p.colore : ""}
+${p.modificaScritta ? "- Modifica scritta: " + p.modificaScritta : ""}
+${p.aggiungiScritta ? "- Aggiunta scritta: " + p.aggiungiScritta : ""}
+${p.posizioneScritta ? "- Posizione personalizzazione: " + p.posizioneScritta : ""}
+- Quantità: ${p.quantita}
+- Prezzo: €${p.prezzo.toFixed(2)}
+- Subtotale: €${prezzoProdotto.toFixed(2)}
+
 `;
-      }).join("\n");
+      });
+
+      if (supplemento > 0) {
+        riepilogo += `➕ Supplemento aggiunta scritta: €${supplemento.toFixed(2)}\n\n`;
+      }
+
+      riepilogo += `💰 Totale: €${(totale + supplemento).toFixed(2)}`;
+
+      return riepilogo;
     }
 
     function inviaOrdine() {
@@ -56,7 +85,8 @@
       emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
         .then(response => {
           document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo! Grazie per aver ordinato con ACADEMY STORE.\nPotrai ritirare il tuo ordine presso il nostro store in via Venezia 128, Ardea.\nRiceverai una mail quando sarà pronto.";
-          localStorage.removeItem("carrello"); window.location.href = "ordine-completato.html";
+          localStorage.removeItem("carrello"); 
+          window.location.href = "ordine-completato.html";
         }, error => {
           document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
         });
