@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -15,34 +14,42 @@
     </nav>
   </header>
   <main>
-    <img src="soccer_dad.jpg" alt="T-shirt Soccer DAD" style="max-width:300px;display:block;margin:auto;">
+    <img id="productImage" src="soccer_dad_bianco.jpg" alt="T-shirt Soccer DAD Bianco" style="max-width:300px;display:block;margin:auto;">
     <p style="text-align:center;"><strong>Prezzo: €14.00</strong></p>
     <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
-      
-        <label>Taglia:
-          <select id="taglia">
-            <option>XXS</option><option>XS</option><option>S</option>
-            <option>M</option><option>L</option><option>XL</option>
-          </select>
-        </label><br><br>
-        
-      
-        <label>Colore:
-          <select id="colore">
-            <option>Bianco</option><option>Nero</option><option>Rosso</option>
-            <option>Giallo</option><option>Blu</option>
-          </select>
-        </label><br><br>
-        
+      <label>Taglia:
+        <select id="taglia">
+          <option>XXS</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option>
+        </select>
+      </label><br><br>
+
+      <label>Colore:
+        <select id="colore" onchange="aggiornaImmagine()">
+          <option value="bianco">Bianco</option>
+          <option value="nero">Nero</option>
+          <option value="rosso">Rosso</option>
+          <option value="giallo">Giallo</option>
+          <option value="blu">Blu</option>
+        </select>
+      </label><br><br>
+
       <label>Quantità:
         <select id="quantita">
           <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
         </select>
       </label><br><br>
+
       <button type="submit">Aggiungi al carrello</button>
     </form>
   </main>
   <script>
+    function aggiornaImmagine() {
+      const colore = document.getElementById("colore").value;
+      const image = document.getElementById("productImage");
+      image.src = `soccer_dad_${colore}.jpg`;
+      image.alt = `T-shirt Soccer DAD ${colore.charAt(0).toUpperCase() + colore.slice(1)}`;
+    }
+
     function aggiungiAlCarrello() {
       const nome = "T-shirt Soccer DAD";
       const prezzo = 14.0;
