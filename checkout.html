@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
@@ -10,7 +10,7 @@
     window.onload = function () {
       emailjs.init("6UvRqFZl_DySz_084");
     };
-  </script>
+</script>
 <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
@@ -73,7 +73,9 @@
         note: document.getElementById("note").value,
         supplemento: supplemento.toFixed(2),
         totale: totale.toFixed(2),
-        carrello: carrelloEmail
+        carrello: carrelloEmail.map(p =>
+          `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}`
+        ).join("<br>")
       };
 
       emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
@@ -85,6 +87,6 @@
           document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
         });
     }
-  </script>
+</script>
 </body>
 </html>
