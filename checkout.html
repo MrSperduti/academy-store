@@ -74,8 +74,9 @@
         supplemento: supplemento.toFixed(2),
         totale: totale.toFixed(2),
         carrello: carrelloEmail.map(p =>
-          `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}`
-        ).join("<br>")
+          `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}` +
+          (p.aggiungiScritta ? `<br>✍️ Scritta: "${p.aggiungiScritta}" ${p.posizioneScritta ? "sul " + p.posizioneScritta : ""}` : "")
+        ).join("<br><br>")
       };
 
       emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
