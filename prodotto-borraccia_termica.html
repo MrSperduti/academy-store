@@ -1,34 +1,44 @@
 
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Borraccia termica</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Borraccia termica</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-  <header>
-    <h1>Borraccia termica</h1>
-    <nav>
-      <a href="prodotti.html">🔙 Torna al catalogo</a>
-    </nav>
-  </header>
-  <main>
-    <img src="borraccia_termica.jpg" alt="Borraccia termica" style="max-width:300px;display:block;margin:auto;">
-    <p style="text-align:center;"><strong>Prezzo: €13.50</strong></p>
-    <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
-      
-      
-      <label>Quantità:
+<header class="navbar">
+<div class="logo">
+<a href="index.html">ACADEMY STORE</a>
+</div>
+<nav>
+<a href="categorie.html">Categorie</a>
+<a href="carrello.html">🛒 Carrello</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</header>
+
+<header>
+<h1>Borraccia termica</h1>
+<nav>
+<a href="prodotti.html">🔙 Torna al catalogo</a>
+</nav>
+</header>
+<main>
+<img alt="Borraccia termica" src="borraccia_termica.jpg" style="max-width:300px;display:block;margin:auto;"/>
+<p style="text-align:center;"><strong>Prezzo: €13.50</strong></p>
+<form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
+<label>Quantità:
         <select id="quantita">
-          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
-        </select>
-      </label><br><br>
-      <button type="submit">Aggiungi al carrello</button>
-    </form>
-  </main>
-  <script>
+<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+</select>
+</label><br/><br/>
+<button type="submit">Aggiungi al carrello</button>
+</form>
+</main>
+<script>
     function aggiungiAlCarrello() {
       const nome = "Borraccia termica";
       const prezzo = 13.5;

@@ -1,43 +1,52 @@
 <!DOCTYPE html>
+
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pochette 16x22cm</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pochette 16x22cm</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-  <header>
-    <h1>Pochette 16x22cm</h1>
-    <nav>
-      <a href="prodotti.html">🔙 Torna al catalogo</a>
-    </nav>
-  </header>
-  <main>
-    <img id="productImage" src="pochette_16x22_bianco.jpg" alt="Pochette 16x22cm Bianco" style="max-width:300px;display:block;margin:auto;">
-    <p style="text-align:center;"><strong>Prezzo: €10.00</strong></p>
-    <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
+<header class="navbar">
+<div class="logo">
+<a href="index.html">ACADEMY STORE</a>
+</div>
+<nav>
+<a href="categorie.html">Categorie</a>
+<a href="carrello.html">🛒 Carrello</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</header>
 
-      <label>Colore:
+<header>
+<h1>Pochette 16x22cm</h1>
+<nav>
+<a href="prodotti.html">🔙 Torna al catalogo</a>
+</nav>
+</header>
+<main>
+<img alt="Pochette 16x22cm Bianco" id="productImage" src="pochette_16x22_bianco.jpg" style="max-width:300px;display:block;margin:auto;"/>
+<p style="text-align:center;"><strong>Prezzo: €10.00</strong></p>
+<form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
+<label>Colore:
         <select id="colore" onchange="aggiornaImmagine()">
-          <option value="bianco">Bianco</option>
-          <option value="nero">Nero</option>
-          <option value="rosso">Rosso</option>
-          <option value="giallo">Giallo</option>
-          <option value="blu">Blu</option>
-        </select>
-      </label><br><br>
-
-      <label>Quantità:
+<option value="bianco">Bianco</option>
+<option value="nero">Nero</option>
+<option value="rosso">Rosso</option>
+<option value="giallo">Giallo</option>
+<option value="blu">Blu</option>
+</select>
+</label><br/><br/>
+<label>Quantità:
         <select id="quantita">
-          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
-        </select>
-      </label><br><br>
-
-      <button type="submit">Aggiungi al carrello</button>
-    </form>
-  </main>
-  <script>
+<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+</select>
+</label><br/><br/>
+<button type="submit">Aggiungi al carrello</button>
+</form>
+</main>
+<script>
     function aggiornaImmagine() {
       const colore = document.getElementById("colore").value;
       const image = document.getElementById("productImage");
