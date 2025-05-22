@@ -10,23 +10,35 @@ document.getElementById("fileInput").addEventListener("change", function(e) {
     reader.readAsText(e.target.files[0]);
 });
 
+function slugify(text) {
+    return text.toString().toLowerCase().trim().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+}
+
 function renderEditor() {
     const container = document.getElementById("editorContainer");
     container.innerHTML = "";
-    prodotti.forEach((prod, index) => { if (!prod.id) prod.id = prod.pagina.replace(".html", "");
+    prodotti.forEach((prod, index) => {
+        const nome = prod.nome || "";
+        const id = "prodotto-" + slugify(nome);
+        const pagina = id + ".html";
+
+        prod.id = id;
+        prod.pagina = pagina;
+
         const div = document.createElement("div");
         div.innerHTML = `
-            <input value="${prod.nome}" onchange="prodotti[${index}].nome = this.value" />
-            <input value="${prod.categoria}" onchange="prodotti[${index}].categoria = this.value" />
-            <input value="${prod.pagina}" onchange="prodotti[${index}].pagina = this.value" />
-            <input value="${prod.immagine}" onchange="prodotti[${index}].immagine = this.value" />
+            <label>Nome: <input value="${nome}" onchange="prodotti[${index}].nome = this.value; renderEditor();" /></label>
+            <label>Categoria: <input value="${prod.categoria || ""}" onchange="prodotti[${index}].categoria = this.value" /></label>
+            <label>Immagine: <input value="${prod.immagine || ""}" onchange="prodotti[${index}].immagine = this.value" /></label>
+            <label>Prezzo (€): <input type="number" step="0.01" value="${prod.prezzo || ""}" onchange="prodotti[${index}].prezzo = parseFloat(this.value)" /></label>
+            <hr />
         `;
         container.appendChild(div);
     });
 }
 
 function aggiungiProdotto() {
-    prodotti.push({ nome: "", categoria: "", pagina: "", immagine: "" });
+    prodotti.push({ nome: "", categoria: "", immagine: "", prezzo: 0 });
     renderEditor();
 }
 

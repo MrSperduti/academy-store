@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             container.innerHTML = `
                 <h1>${prodotto.nome}</h1>
                 <img src="${prodotto.immagine}" alt="${prodotto.nome}" style="max-width:300px;">
-                <p>Categoria: <strong>${prodotto.categoria}</strong></p>
+                <p>Categoria: <strong>${prodotto.categoria}</strong></p><p>Prezzo: <strong>€ ${prodotto.prezzo}</strong></p>
                 <label for="taglia">Taglia:</label>
                 <select id="taglia">
                     <option value="S">S</option>
@@ -41,7 +41,7 @@ function aggiungiAlCarrello(id, nome, immagine) {
     const quantita = parseInt(document.getElementById("quantita").value);
     const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
 
-    carrello.push({ id, nome, immagine, taglia, quantita });
+    carrello.push({ id, nome, immagine, taglia, quantita, prezzo: prodotto.prezzo });
 
     localStorage.setItem("carrello", JSON.stringify(carrello));
     alert("Prodotto aggiunto al carrello!");
