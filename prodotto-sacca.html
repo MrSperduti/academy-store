@@ -12,39 +12,48 @@
             <a href="index.html">ACADEMY STORE</a>
         </div>
         <nav>
-            <a href="index.html">Home</a>
             <a href="categorie.html">Categorie</a>
             <a href="carrello.html">🛒 Carrello</a>
+            <a href="contatti.html">Contatti</a>
         </nav>
     </header>
-    <h1>Sacca</h1>
-    <img src="sacca.jpg" alt="Sacca" style="max-width:300px;">
-    <p>Categoria: <strong>Borse</strong></p>
-    <p>Prezzo: <strong>€ 10</strong></p>
-    <label for="taglia">Taglia:</label>
-    <select id="taglia">
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-    </select><br><br>
-    <label for="quantita">Quantità:</label>
-    <input type="number" id="quantita" value="1" min="1" style="width: 50px;"><br><br>
-    <button onclick="aggiungiAlCarrello()">🛒 Aggiungi al carrello</button>
+
+    <main style="text-align:center; padding: 40px;">
+        <h1 style="font-size: 2.5rem;">Sacca</h1>
+        <a href="categoria-borse.html" style="display: block; margin-bottom: 20px; text-decoration: none; color: #00008B;">← Torna al catalogo</a>
+        <img src="sacca_bianca.jpg" alt="Sacca" style="max-width:300px; display:block; margin: 0 auto 20px;">
+        <p style="font-size: 1.2rem;"><strong>Prezzo: €10.00</strong></p>
+
+        <label for="taglia">Colore:</label><br>
+        <select id="taglia" style="width: 300px; padding: 8px; margin: 10px 0;">
+            <option value="Bianco">Bianco</option>
+        </select><br>
+
+        <label for="quantita">Quantità:</label><br>
+        <select id="quantita" style="width: 300px; padding: 8px; margin-bottom: 20px;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select><br>
+
+        <button onclick="aggiungiAlCarrello()" style="width: 300px; background-color: #d80027; color: white; padding: 12px; font-size: 1rem; border: none; cursor: pointer;">Aggiungi al carrello</button>
+    </main>
 
     <script>
         function aggiungiAlCarrello() {
             const taglia = document.getElementById("taglia").value;
             const quantita = parseInt(document.getElementById("quantita").value);
             const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+
             carrello.push({
                 id: "prodotto-sacca",
                 nome: "Sacca",
-                immagine: "sacca.jpg",
+                immagine: "sacca_bianca.jpg",
                 taglia,
                 quantita,
                 prezzo: 10
             });
+
             localStorage.setItem("carrello", JSON.stringify(carrello));
             alert("Prodotto aggiunto al carrello!");
         }
