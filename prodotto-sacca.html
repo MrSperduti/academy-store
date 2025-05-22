@@ -2,61 +2,68 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Sacca</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sacca</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <a href="index.html">ACADEMY STORE</a>
-        </div>
-        <nav>
-            <a href="categorie.html">Categorie</a>
-            <a href="carrello.html">🛒 Carrello</a>
-            <a href="contatti.html">Contatti</a>
-        </nav>
-    </header>
+<header class="navbar">
+<div class="logo">
+<a href="index.html">ACADEMY STORE</a>
+</div>
+<nav>
+<a href="categorie.html">Categorie</a>
+<a href="carrello.html">🛒 Carrello</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</header>
 
-    <main style="text-align:center; padding: 40px;">
-        <h1 style="font-size: 2.5rem;">Sacca</h1>
-        <a href="categoria-borse.html" style="display: block; margin-bottom: 20px; text-decoration: none; color: #00008B;">← Torna al catalogo</a>
-        <img src="sacca_bianca.jpg" alt="Sacca" style="max-width:300px; display:block; margin: 0 auto 20px;">
-        <p style="font-size: 1.2rem;"><strong>Prezzo: €10.00</strong></p>
+<header>
+<h1>Sacca</h1>
+<nav>
+<a href="categoria-borse.html">🔙 Torna al catalogo</a>
+</nav>
+</header>
+<main>
+<img alt="Sacca Bianco" id="productImage" src="sacca_bianca.jpg" style="max-width:300px;display:block;margin:auto;"/>
+<p style="text-align:center;"><strong>Prezzo: €10.00</strong></p>
+<form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
+<label>Colore:
+        <select id="colore" onchange="aggiornaImmagine()">
+<option value="bianca">Bianca</option>
+<option value="nera">Nera</option>
+<option value="rossa">Rossa</option>
+<option value="blu">Blu</option>
+</select>
+</label><br/><br/>
+<label>Quantità:
+        <select id="quantita">
+<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+</select>
+</label><br/><br/>
+<button type="submit">Aggiungi al carrello</button>
+</form>
+</main>
+<script>
+    function aggiornaImmagine() {
+      const colore = document.getElementById("colore").value;
+      const image = document.getElementById("productImage");
+      image.src = `sacca_${colore}.jpg`;
+      image.alt = `Sacca ${colore.charAt(0).toUpperCase() + colore.slice(1)}`;
+    }
 
-        <label for="taglia">Colore:</label><br>
-        <select id="taglia" style="width: 300px; padding: 8px; margin: 10px 0;">
-            <option value="Bianco">Bianco</option>
-        </select><br>
+    function aggiungiAlCarrello() {
+      const nome = "Sacca";
+      const prezzo = 10.0;
+      const colore = document.getElementById("colore")?.value || "";
+      const quantita = parseInt(document.getElementById("quantita").value);
 
-        <label for="quantita">Quantità:</label><br>
-        <select id="quantita" style="width: 300px; padding: 8px; margin-bottom: 20px;">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select><br>
-
-        <button onclick="aggiungiAlCarrello()" style="width: 300px; background-color: #d80027; color: white; padding: 12px; font-size: 1rem; border: none; cursor: pointer;">Aggiungi al carrello</button>
-    </main>
-
-    <script>
-        function aggiungiAlCarrello() {
-            const taglia = document.getElementById("taglia").value;
-            const quantita = parseInt(document.getElementById("quantita").value);
-            const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
-
-            carrello.push({
-                id: "prodotto-sacca",
-                nome: "Sacca",
-                immagine: "sacca_bianca.jpg",
-                taglia,
-                quantita,
-                prezzo: 10
-            });
-
-            localStorage.setItem("carrello", JSON.stringify(carrello));
-            alert("Prodotto aggiunto al carrello!");
-        }
-    </script>
+      let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+      carrello.push({ nome, prezzo, taglia: "", colore, quantita });
+      localStorage.setItem("carrello", JSON.stringify(carrello));
+      alert("Prodotto aggiunto al carrello!");
+    }
+</script>
 </body>
 </html>
