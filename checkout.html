@@ -65,6 +65,11 @@
       subtotal: (p.prezzo * p.quantita).toFixed(2)
     }));
 
+    const dettagli = carrelloEmail.map(p =>
+      `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}` +
+      (p.aggiungiScritta ? `<br>✍️ Scritta: "${p.aggiungiScritta}" ${p.posizioneScritta ? "sul " + p.posizioneScritta : ""}` : "")
+    ).join("<br><br>");
+
     const templateParams = {
       nome: document.getElementById("nome").value,
       cognome: document.getElementById("cognome").value,
@@ -73,19 +78,23 @@
       note: document.getElementById("note").value,
       supplemento: supplemento.toFixed(2),
       totale: totale.toFixed(2),
-      carrello: carrelloEmail.map(p =>
-        `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}` +
-        (p.aggiungiScritta ? `<br>✍️ Scritta: "${p.aggiungiScritta}" ${p.posizioneScritta ? "sul " + p.posizioneScritta : ""}` : "")
-      ).join("<br><br>")
+      carrello: dettagli,  // per l'organizzatore
+      to_name: document.getElementById("nome").value,
+      to_email: document.getElementById("email").value,
+      dettagli: dettagli,
+      totale_cliente: totale.toFixed(2)
     };
 
-    // Invia ordine a te
+    // Invio principale a organizzatore
     emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
       .then(response => {
-        // Invia conferma al cliente
+        // Invio di conferma al cliente
         emailjs.send("service_px4g8mw", "template_zg0ri9p", {
-          to_email: templateParams.email,
-          to_name: templateParams.nome
+          to_email: templateParams.to_email,
+          to_name: templateParams.to_name,
+          dettagli: templateParams.dettagli,
+          totale: templateParams.totale_cliente,
+          note: templateParams.note
         });
 
         document.getElementById("debug-output").textContent =
