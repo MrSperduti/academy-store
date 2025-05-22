@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-
 <html lang="it">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Carrello</title>
-<link href="style.css" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrello</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="navbar">
-<div class="logo">
-<a href="index.html">ACADEMY STORE</a>
-</div>
-<nav>
-<a href="categorie.html">Categorie</a>
-<a href="carrello.html">🛒 Carrello</a>
-<a href="contatti.html">Contatti</a>
-</nav>
-</header>
-
-<header>
-<h1>Carrello</h1>
-<nav>
-<a href="prodotti.html">🔙 Torna al catalogo</a>
-</nav>
-</header>
-<main>
-<div id="carrello"></div>
-<h3 id="totale"></h3>
-<a href="checkout.html"><button>Procedi al checkout</button></a>
-</main>
-<script>
+  <header>
+    <h1>Carrello</h1>
+    <nav>
+      <a href="prodotti.html">🔙 Torna al catalogo</a>
+    </nav>
+  </header>
+  <main>
+    <div id="carrello"></div>
+    <h3 id="totale"></h3>
+    <a href="checkout.html"><button>Procedi al checkout</button></a>
+  </main>
+  <script>
     const contenitore = document.getElementById("carrello");
     const totaleElem = document.getElementById("totale");
     let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
