@@ -5,7 +5,7 @@
     "pagina": "prodotto-tshirt_supporter.html",
     "immagine": "tshirt_supporter_azzurro.jpg",
     "id": "prodotto-tshirt_supporter",
-    "prezzo": 28.61
+    "prezzo": 13
   },
   {
     "nome": "Felpa Supporter",
@@ -13,7 +13,7 @@
     "pagina": "prodotto-felpa_supporter.html",
     "immagine": "felpa_supporter_bianco.jpg",
     "id": "prodotto-felpa_supporter",
-    "prezzo": 27.07
+    "prezzo": 22
   },
   {
     "nome": "Tshirt Sempre",
@@ -21,7 +21,7 @@
     "pagina": "prodotto-tshirt_sempre.html",
     "immagine": "tshirt_sempre_bianco.jpg",
     "id": "prodotto-tshirt_sempre",
-    "prezzo": 35.5
+    "prezzo": 15
   },
   {
     "nome": "Soccer Mom",
@@ -29,7 +29,7 @@
     "pagina": "prodotto-soccer_mom.html",
     "immagine": "soccer_mom_bianco.jpg",
     "id": "prodotto-soccer_mom",
-    "prezzo": 15.89
+    "prezzo": 14
   },
   {
     "nome": "Soccer Dad",
@@ -37,7 +37,7 @@
     "pagina": "prodotto-soccer_dad.html",
     "immagine": "soccer_dad_bianco.jpg",
     "id": "prodotto-soccer_dad",
-    "prezzo": 36.64
+    "prezzo": 14
   },
   {
     "nome": "Baby Fan",
@@ -45,7 +45,7 @@
     "pagina": "prodotto-baby_fan.html",
     "immagine": "baby_fan_bianco.jpg",
     "id": "prodotto-baby_fan",
-    "prezzo": 22.38
+    "prezzo": 14
   },
   {
     "nome": "Body Fan",
@@ -53,7 +53,7 @@
     "pagina": "prodotto-body_fan.html",
     "immagine": "body_fan.jpg",
     "id": "prodotto-body_fan",
-    "prezzo": 25.53
+    "prezzo": 15
   },
   {
     "nome": "Pantaloncino Uomo",
@@ -61,7 +61,7 @@
     "pagina": "prodotto-pantaloncino_uomo.html",
     "immagine": "pantaloncino_uomo_bianco.jpg",
     "id": "prodotto-pantaloncino_uomo",
-    "prezzo": 24.43
+    "prezzo": 20
   },
   {
     "nome": "Pantaloncino Donna",
@@ -69,7 +69,7 @@
     "pagina": "prodotto-pantaloncino_donna.html",
     "immagine": "pantaloncino_donna_bianco.jpg",
     "id": "prodotto-pantaloncino_donna",
-    "prezzo": 29.01
+    "prezzo": 20
   },
   {
     "nome": "Pochette Zip",
@@ -77,7 +77,7 @@
     "pagina": "prodotto-pochette_zip.html",
     "immagine": "pochette_zip_blu.jpg",
     "id": "prodotto-pochette_zip",
-    "prezzo": 10.91
+    "prezzo": 13
   },
   {
     "nome": "Pochette 16X22",
@@ -85,7 +85,7 @@
     "pagina": "prodotto-pochette_16x22.html",
     "immagine": "pochette_16x22_bianco.jpg",
     "id": "prodotto-pochette_16x22",
-    "prezzo": 17.89
+    "prezzo": 10
   },
   {
     "nome": "Cappello Glam",
@@ -93,7 +93,7 @@
     "pagina": "prodotto-cappello_glam.html",
     "immagine": "cappello_glam.jpg",
     "id": "prodotto-cappello_glam",
-    "prezzo": 12.87
+    "prezzo": 12
   },
   {
     "nome": "Borraccia Plastica",
@@ -101,7 +101,7 @@
     "pagina": "prodotto-borraccia_plastica.html",
     "immagine": "borraccia_plastica.jpg",
     "id": "prodotto-borraccia_plastica",
-    "prezzo": 30.42
+    "prezzo": 11
   },
   {
     "nome": "Borraccia Termica",
@@ -109,6 +109,14 @@
     "pagina": "prodotto-borraccia_termica.html",
     "immagine": "borraccia_termica.jpg",
     "id": "prodotto-borraccia_termica",
-    "prezzo": 34.58
+    "prezzo": 13.5
+  },
+  {
+    "nome": "Sacca",
+    "categoria": "borse",
+    "immagine": "sacca_bianca.jpg",
+    "prezzo": 10,
+    "id": "prodotto-sacca",
+    "pagina": "prodotto-sacca.html"
   }
 ]
