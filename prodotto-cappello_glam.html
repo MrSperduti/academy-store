@@ -27,7 +27,7 @@
 </nav>
 </header>
 <main>
-<img alt="Cappello glam" src="cappello_glam.jpg" style="max-width:300px;display:block;margin:auto;"/>
+<img alt="Cappello glam" id="productImage" src="cappello_glam_rosso.jpg" style="max-width:300px;display:block;margin:auto;"/>
 <p style="text-align:center;"><strong>Prezzo: €12.00</strong></p>
 <form onsubmit="aggiungiAlCarrello(); return false;" style="text-align:center;margin-top:20px;">
 
@@ -61,6 +61,16 @@
       localStorage.setItem("carrello", JSON.stringify(carrello));
       alert("Prodotto aggiunto al carrello!");
     }
-  </script>
+  
+    function aggiornaImmagine() {
+      const colore = document.getElementById("colore").value.toLowerCase().replace(/[^a-z]/g, "_");
+      const image = document.getElementById("productImage");
+      image.src = `cappello_glam_${colore}.jpg`;
+      image.alt = `Cappello glam ${colore}`;
+    }
+
+    document.getElementById("colore").addEventListener("change", aggiornaImmagine);
+
+</script>
 </body>
 </html>
