@@ -7,87 +7,95 @@
 <title>Checkout - ACADEMY STORE</title>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-    window.onload = function () {
-      emailjs.init("6UvRqFZl_DySz_084");
-    };
+  window.onload = function () {
+    emailjs.init("6UvRqFZl_DySz_084");
+  };
 </script>
 <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
 <header class="navbar">
-<div class="logo">
-<a href="index.html">ACADEMY STORE</a>
-</div>
-<nav>
-<a href="categorie.html">Categorie</a>
-<a href="carrello.html">🛒 Carrello</a>
-<a href="contatti.html">Contatti</a>
-</nav>
+  <div class="logo"><a href="index.html">ACADEMY STORE</a></div>
+  <nav>
+    <a href="categorie.html">Categorie</a>
+    <a href="carrello.html">🛒 Carrello</a>
+    <a href="contatti.html">Contatti</a>
+  </nav>
 </header>
 
 <header>
 <h1>Checkout</h1>
 <nav><a href="prodotti.html">🔙 Torna al catalogo</a></nav>
 </header>
+
 <main>
 <form id="checkout-form" onsubmit="inviaOrdine(); return false;" style="max-width: 400px; margin: auto;">
-<label>Nome:<br/><input id="nome" required="" type="text"/></label><br/><br/>
-<label>Cognome:<br/><input id="cognome" required="" type="text"/></label><br/><br/>
-<label>Data di nascita:<br/><input id="datanascita" required="" type="date"/></label><br/><br/>
-<label>Email:<br/><input id="email" required="" type="email"/></label><br/><br/>
-<label>Note:<br/><textarea id="note" rows="4"></textarea></label><br/><br/>
-<button type="submit">📩 Invia ordine</button>
+  <label>Nome:<br/><input id="nome" required type="text"/></label><br/><br/>
+  <label>Cognome:<br/><input id="cognome" required type="text"/></label><br/><br/>
+  <label>Data di nascita:<br/><input id="datanascita" required type="date"/></label><br/><br/>
+  <label>Email:<br/><input id="email" required type="email"/></label><br/><br/>
+  <label>Note:<br/><textarea id="note" rows="4"></textarea></label><br/><br/>
+  <button type="submit">📩 Invia ordine</button>
 </form>
 <pre id="debug-output" style="margin-top:20px; background:#eee; padding:10px;"></pre>
 </main>
+
 <script>
-    function inviaOrdine() {
-      const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+  function inviaOrdine() {
+    const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
 
-      const supplemento = carrello.reduce((acc, p) => {
-        if (p.aggiungiScritta && p.aggiungiScritta.trim() !== "") {
-          return acc + 2 * p.quantita;
-        }
-        return acc;
-      }, 0);
+    const supplemento = carrello.reduce((acc, p) => {
+      if (p.aggiungiScritta && p.aggiungiScritta.trim() !== "") {
+        return acc + 2 * p.quantita;
+      }
+      return acc;
+    }, 0);
 
-      const totale = carrello.reduce((acc, p) => acc + p.prezzo * p.quantita, 0) + supplemento;
+    const totale = carrello.reduce((acc, p) => acc + p.prezzo * p.quantita, 0) + supplemento;
 
-      const carrelloEmail = carrello.map(p => ({
-        nome: p.nome,
-        taglia: p.taglia || "",
-        colore: p.colore || "",
-        modificaScritta: p.modificaScritta || "",
-        aggiungiScritta: p.aggiungiScritta || "",
-        posizioneScritta: p.posizioneScritta || "",
-        quantita: p.quantita,
-        prezzo: p.prezzo.toFixed(2),
-        subtotal: (p.prezzo * p.quantita).toFixed(2)
-      }));
+    const carrelloEmail = carrello.map(p => ({
+      nome: p.nome,
+      taglia: p.taglia || "",
+      colore: p.colore || "",
+      modificaScritta: p.modificaScritta || "",
+      aggiungiScritta: p.aggiungiScritta || "",
+      posizioneScritta: p.posizioneScritta || "",
+      quantita: p.quantita,
+      prezzo: p.prezzo.toFixed(2),
+      subtotal: (p.prezzo * p.quantita).toFixed(2)
+    }));
 
-      const templateParams = {
-        nome: document.getElementById("nome").value,
-        cognome: document.getElementById("cognome").value,
-        datanascita: document.getElementById("datanascita").value,
-        email: document.getElementById("email").value,
-        note: document.getElementById("note").value,
-        supplemento: supplemento.toFixed(2),
-        totale: totale.toFixed(2),
-        carrello: carrelloEmail.map(p =>
-          `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}` +
-          (p.aggiungiScritta ? `<br>✍️ Scritta: "${p.aggiungiScritta}" ${p.posizioneScritta ? "sul " + p.posizioneScritta : ""}` : "")
-        ).join("<br><br>")
-      };
+    const templateParams = {
+      nome: document.getElementById("nome").value,
+      cognome: document.getElementById("cognome").value,
+      datanascita: document.getElementById("datanascita").value,
+      email: document.getElementById("email").value,
+      note: document.getElementById("note").value,
+      supplemento: supplemento.toFixed(2),
+      totale: totale.toFixed(2),
+      carrello: carrelloEmail.map(p =>
+        `🛍️ ${p.nome} - Colore: ${p.colore} - Taglia: ${p.taglia} - Quantità: ${p.quantita} - Prezzo: €${p.prezzo} - Subtotale: €${p.subtotal}` +
+        (p.aggiungiScritta ? `<br>✍️ Scritta: "${p.aggiungiScritta}" ${p.posizioneScritta ? "sul " + p.posizioneScritta : ""}` : "")
+      ).join("<br><br>")
+    };
 
-      emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
-        .then(response => {
-          document.getElementById("debug-output").textContent = "✅ Ordine inviato con successo! Grazie per aver ordinato con ACADEMY STORE.\nPotrai ritirare il tuo ordine presso il nostro store in via Venezia 128, Ardea.\nRiceverai una mail quando sarà pronto.";
-          localStorage.removeItem("carrello");
-          window.location.href = "ordine-completato.html";
-        }, error => {
-          document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
+    // Invia ordine a te
+    emailjs.send("service_px4g8mw", "template_qeoslbr", templateParams)
+      .then(response => {
+        // Invia conferma al cliente
+        emailjs.send("service_px4g8mw", "template_zg0ri9p", {
+          to_email: templateParams.email,
+          to_name: templateParams.nome
         });
-    }
+
+        document.getElementById("debug-output").textContent =
+          "✅ Ordine inviato con successo! Grazie per aver ordinato con ACADEMY STORE.\nPotrai ritirare il tuo ordine presso il nostro store in via Venezia 128, Ardea.\nRiceverai una mail quando sarà pronto.";
+        localStorage.removeItem("carrello");
+        window.location.href = "ordine-completato.html";
+      }, error => {
+        document.getElementById("debug-output").textContent = "❌ Errore durante l'invio:\n" + JSON.stringify(error, null, 2);
+      });
+  }
 </script>
 </body>
 </html>
