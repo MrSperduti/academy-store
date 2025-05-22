@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Sacca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">ACADEMY STORE</a>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="categorie.html">Categorie</a>
+            <a href="carrello.html">🛒 Carrello</a>
+        </nav>
+    </header>
+    <h1>Sacca</h1>
+    <img src="sacca.jpg" alt="Sacca" style="max-width:300px;">
+    <p>Categoria: <strong>Borse</strong></p>
+    <p>Prezzo: <strong>€ 10</strong></p>
+    <label for="taglia">Taglia:</label>
+    <select id="taglia">
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+    </select><br><br>
+    <label for="quantita">Quantità:</label>
+    <input type="number" id="quantita" value="1" min="1" style="width: 50px;"><br><br>
+    <button onclick="aggiungiAlCarrello()">🛒 Aggiungi al carrello</button>
+
+    <script>
+        function aggiungiAlCarrello() {
+            const taglia = document.getElementById("taglia").value;
+            const quantita = parseInt(document.getElementById("quantita").value);
+            const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+            carrello.push({
+                id: "prodotto-sacca",
+                nome: "Sacca",
+                immagine: "sacca.jpg",
+                taglia,
+                quantita,
+                prezzo: 10
+            });
+            localStorage.setItem("carrello", JSON.stringify(carrello));
+            alert("Prodotto aggiunto al carrello!");
+        }
+    </script>
+</body>
+</html>
