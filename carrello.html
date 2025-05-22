@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Carrello</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="navbar">
+<div class="logo">
+<a href="index.html">ACADEMY STORE</a>
+</div>
+<nav>
+<a href="categorie.html">Categorie</a>
+<a href="carrello.html">🛒 Carrello</a>
+<a href="contatti.html">Contatti</a>
+</nav>
+</header>
+
+<header>
+<h1>Carrello</h1>
+<nav>
+<a href="prodotti.html">🔙 Torna al catalogo</a>
+</nav>
+</header>
+<main>
+<div id="carrello"></div>
+<h3 id="totale"></h3>
+<a href="checkout.html"><button>Procedi al checkout</button></a>
+</main>
+<script>
+    const contenitore = document.getElementById("carrello");
+    const totaleElem = document.getElementById("totale");
+    let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+
+    function mostraCarrello() {
+      contenitore.innerHTML = "";
+      let totale = 0;
+      let supplemento = 0;
+
+      carrello.forEach((p, i) => {
+        const prezzoSingolo = p.prezzo || 0;
+        const subtotale = prezzoSingolo * p.quantita;
+
+        // Verifica se c'è aggiunta scritta per applicare supplemento
+        const haAggiuntaScritta = p.aggiungiScritta && p.aggiungiScritta.trim() !== "";
+
+        if (haAggiuntaScritta) {
+          supplemento += 2 * p.quantita; // 2 euro per ogni unità personalizzata
+        }
+
+        totale += subtotale;
+
+        contenitore.innerHTML += `
+          <div class="item">
+            <strong>${p.nome}</strong><br>
+            ${p.taglia ? "Taglia: " + p.taglia + "<br>" : ""}
+            ${p.colore ? "Colore: " + p.colore + "<br>" : ""}
+            ${p.modificaScritta ? "Modifica scritta: " + p.modificaScritta + "<br>" : ""}
+            ${p.aggiungiScritta ? "Aggiunta scritta: " + p.aggiungiScritta + "<br>" : ""}
+            ${p.posizioneScritta ? "Posizione personalizzazione: " + p.posizioneScritta + "<br>" : ""}
+            Quantità: ${p.quantita}<br>
+            Prezzo: €${prezzoSingolo.toFixed(2)}<br>
+            Subtotale: €${subtotale.toFixed(2)}
+            <button onclick="rimuovi(${i})">❌</button>
+          </div>
+        `;
+      });
+
+      const totaleConSupplemento = totale + supplemento;
+
+      if (supplemento > 0) {
+        totaleElem.textContent = `Totale: €${totale.toFixed(2)} + Supplemento personalizzazione: €${supplemento.toFixed(2)} = €${totaleConSupplemento.toFixed(2)}`;
+      } else {
+        totaleElem.textContent = `Totale: €${totale.toFixed(2)}`;
+      }
+    }
+
+    function rimuovi(index) {
+      carrello.splice(index, 1);
+      localStorage.setItem("carrello", JSON.stringify(carrello));
+      mostraCarrello();
+    }
+
+    mostraCarrello();
+  </script>
+</body>
+</html>
